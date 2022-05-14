@@ -62,6 +62,7 @@ jobs:
         thresholds: '60 80'
 
     - name: Create Coverage Report Check
+      if: always()
       uses: LouisBrunner/checks-action@v1.2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
