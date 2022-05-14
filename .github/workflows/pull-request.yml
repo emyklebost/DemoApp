@@ -46,17 +46,9 @@ jobs:
         fail-on-error: false
 
     - name: Copy Coverage To Predictable Location
-      run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
+      run: cp coverage/**/coverage.cobertura.xml coverage.xml
 
-    - name: Code Coverage Summary Report
-      uses: irongut/CodeCoverageSummary@v1.2.0
+    - uses: 5monkeys/cobertura-action@master
       with:
-        filename: coverage.cobertura.xml
-        badge: true
-        fail_below_min: true
-        format: markdown
-        hide_branch_rate: false
-        hide_complexity: true
-        indicators: true
-        output: both
-        thresholds: '60 80'   
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        minimum_coverage: 75
