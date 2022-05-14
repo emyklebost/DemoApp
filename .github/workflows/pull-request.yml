@@ -17,7 +17,7 @@ jobs:
     - name: Checkout  
       uses: actions/checkout@v2
 
-    - name: Setup .NET Core
+    - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
@@ -34,7 +34,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Test
-      run: dotnet test --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" || true
+      run: dotnet test --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" --results-directory ./coverage || true
 
     - name: Test Report
       uses: dorny/test-reporter@v1
@@ -46,7 +46,7 @@ jobs:
         fail-on-error: false
 
     - name: Copy Coverage To Predictable Location
-      run: cp **/coverage.cobertura.xml coverage.cobertura.xml
+      run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
 
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.2.0
