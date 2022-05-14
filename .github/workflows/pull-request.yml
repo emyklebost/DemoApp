@@ -48,7 +48,23 @@ jobs:
     - name: Copy Coverage To Predictable Location
       run: cp coverage/**/coverage.cobertura.xml coverage.xml
 
-    - uses: 5monkeys/cobertura-action@master
+    - name: ReportGenerator
+      uses: danielpalme/ReportGenerator-GitHub-Action@4.8.12
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        minimum_coverage: 75
+        reports: 'coverage.xml'
+        targetdir: 'coveragereport'
+        reporttypes: 'HtmlInline;Cobertura;MarkdownSummary' 
+
+    - name: Publish coverage summary
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        path: coveragereport/Summary.md
+
+    - name: Create CheckRun for code Coverage
+      uses: LouisBrunner/checks-action@v1.2.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: Code Coverage
+        conclusion: ${{ job.status }}
+        output: "{\"summary\":\"Code Coverage\"}"
+        output_text_description_file: coveragereport/Summary.md            
