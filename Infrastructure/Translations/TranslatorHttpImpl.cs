@@ -1,5 +1,7 @@
 ﻿using DemoApp.Domain.Products;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text;
 
 namespace DemoApp.Infrastructure.Translations
 {
@@ -21,7 +23,16 @@ namespace DemoApp.Infrastructure.Translations
                 TargetLanguageCode = languageCode,
             };
 
-            var response = await _httpClient.PostAsJsonAsync("/v3/12345:translateText", requestBody);
+            var request = new HttpRequestMessage(HttpMethod.Post, "/v3/12345:translateText")
+            {
+                Content = JsonContent.Create(requestBody)
+            };
+
+            // This shall be flagged as a security issue by static analyzer
+            var authzValue = Convert.ToBase64String(Encoding.ASCII.GetBytes("eirik:safepassword123"));
+            request.Headers.Authorization = AuthenticationHeaderValue.Parse($"Basic {authzValue}");
+
+            var response = await _httpClient.SendAsync(request);
             
             try
             {
