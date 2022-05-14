@@ -1,4 +1,4 @@
-name: Unit Tests
+name: Pull Request
 
 on:
   pull_request:
@@ -34,7 +34,12 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Test
-      run: dotnet test --logger "trx;LogFileName=test-results.trx" || true
+      run: |
+        dotnet test
+        --logger "trx;LogFileName=test-results.trx"
+        --collect:"XPlat Code Coverage"
+        --results-directory ./coverage
+        || true
 
     - name: Test Report
       uses: dorny/test-reporter@v1
@@ -44,3 +49,16 @@ jobs:
         path: "**/test-results.trx"                            
         reporter: dotnet-trx
         fail-on-error: true
+
+    - name: Code Coverage Summary Report
+      uses: irongut/CodeCoverageSummary@v1
+      with:
+        filename: coverage.cobertura.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'    
