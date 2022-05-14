@@ -1,31 +1,26 @@
 name: Pull Request
-
 on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
 permissions: write-all
 
 jobs:
   build-and-test:
+    name: 🧬 Run tests
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout  
       uses: actions/checkout@v2
-
     - name: Get source branch name
       uses: mdecoleman/pr-branch-name@1.2.0
       id: vars
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-
     - name: Cache dependencies
       uses: actions/cache@v3
       with:
@@ -33,13 +28,24 @@ jobs:
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget-
-
     - name: Build
       run: dotnet build --configuration Release
-
     - name: Test
-      run: dotnet test --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" --results-directory ./coverage || true
+      run: dotnet test --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" --results-directory ./test-output || true
+    - uses: actions/upload-artifact@v3
+      with:
+        name: test-output
+        path: ./test-output
 
+  report-test-results:
+    name: 🪲 Generate Test Report
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: test-output
+        path: ./test-output
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: always()
@@ -49,9 +55,17 @@ jobs:
         reporter: dotnet-trx
         fail-on-error: false
 
+  report-test-coverage:
+    name: 📊 Generate Code Coverage Report
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: test-output
+        path: ./test-output
     - name: Copy Coverage To Predictable Location
-      run: cp coverage/**/coverage.cobertura.xml coverage.xml
-
+      run: cp test-output/**/coverage.cobertura.xml coverage.xml
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.2.0
       with:
@@ -64,7 +78,6 @@ jobs:
         indicators: true
         output: both
         thresholds: '60 80'
-
     - name: Create Coverage Report Check
       if: always()
       uses: LouisBrunner/checks-action@v1.2.0
@@ -75,7 +88,6 @@ jobs:
         output: "{\"summary\":\"Code Coverage Report\"}"
         details_url: https://emyklebost.github.io/DemoApp/branches/${{ steps.vars.outputs.branch }}/coveragereport/
         output_text_description_file: code-coverage-results.md
-
     - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@4.8.12
       if: always()
@@ -83,10 +95,9 @@ jobs:
         reports: 'coverage.xml'
         targetdir: 'coveragereport'
         reporttypes: 'HtmlInline;Cobertura;MarkdownSummary' 
-
       # Publishes the HTML page to a seperate branch in order to host it using GitHub-Pages.
       # This will overwrite the currently published HTML page.
-    - name: 🚀 Deploy to GitHub-Pages
+    - name: Deploy to GitHub-Pages
       uses: peaceiris/actions-gh-pages@v3
       if: always()
       with:
