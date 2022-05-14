@@ -24,3 +24,6 @@ app.UseAuthorization();
 ## Security
 [GitHub Advisory Database](https://github.com/advisories)
 Example of known **High severity** vulnerability in [Hangfire](https://github.com/advisories/GHSA-7rq6-7gv8-c37h).
+
+## Links
+[Curated list of awesome actions](https://project-awesome.org/sdras/awesome-actions)
