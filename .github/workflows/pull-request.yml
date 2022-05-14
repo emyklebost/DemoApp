@@ -12,11 +12,6 @@ jobs:
     steps:
     - name: Checkout  
       uses: actions/checkout@v2
-    - name: Get source branch name
-      uses: mdecoleman/pr-branch-name@1.2.0
-      id: vars
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
@@ -78,6 +73,11 @@ jobs:
         indicators: true
         output: both
         thresholds: '60 80'
+    - name: Get source branch name
+      uses: mdecoleman/pr-branch-name@1.2.0
+      id: vars
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}        
     - name: Create Coverage Report Check
       if: always()
       uses: LouisBrunner/checks-action@v1.2.0
