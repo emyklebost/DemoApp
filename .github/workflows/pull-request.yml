@@ -85,7 +85,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: Coverage Report
         conclusion: ${{ steps.coverage-check.outcome }}
-        output: "{\"summary\":\"Code Coverage Report\"}"
+        output: "{\"summary\":\"[Detailed Report](https://emyklebost.github.io/DemoApp/branches/${{ steps.vars.outputs.branch }}/coveragereport/)\"}"
         details_url: https://emyklebost.github.io/DemoApp/branches/${{ steps.vars.outputs.branch }}/coveragereport/
         output_text_description_file: code-coverage-results.md
     - name: ReportGenerator
