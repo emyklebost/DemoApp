@@ -15,6 +15,12 @@ jobs:
     - name: Checkout  
       uses: actions/checkout@v2
 
+    - name: Get source branch name
+      uses: mdecoleman/pr-branch-name@1.2.0
+      id: vars
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
@@ -67,6 +73,7 @@ jobs:
         name: Coverage Report
         conclusion: ${{ job.status }}
         output: "{\"summary\":\"Code Coverage Report\"}"
+        details_url: https://emyklebost.github.io/DemoApp/branches/${{ steps.vars.outputs.branch }}/coveragereport/
         output_text_description_file: code-coverage-results.md
 
     - name: ReportGenerator
@@ -85,5 +92,5 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: coveragereport
-        destination_dir: branches/${{ github.ref_name }}/coveragereport
-        commit_message: '${{ github.ref_name }}: ${{ github.event.head_commit.message }}'
+        destination_dir: branches/${{ steps.vars.outputs.branch }}/coveragereport
+        commit_message: '${{ steps.vars.outputs.branch }}: ${{ github.event.head_commit.message }}'
