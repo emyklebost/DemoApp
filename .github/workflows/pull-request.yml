@@ -35,10 +35,10 @@ jobs:
 
     - name: Test
       run: |
-        dotnet test
-        --logger "trx;LogFileName=test-results.trx"
-        --collect:"XPlat Code Coverage"
-        --results-directory ./coverage
+        dotnet test \
+        --logger "trx;LogFileName=test-results.trx" \
+        --collect:"XPlat Code Coverage" \
+        --results-directory ./coverage \
         || true
 
     - name: Test Report
