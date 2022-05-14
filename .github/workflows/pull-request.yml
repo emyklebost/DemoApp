@@ -5,14 +5,11 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions: write-all
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-      checks: write
-      pages: write
 
     steps:
     - name: Checkout  
