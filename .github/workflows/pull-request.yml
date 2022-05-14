@@ -55,11 +55,6 @@ jobs:
         targetdir: 'coveragereport'
         reporttypes: 'HtmlInline;Cobertura;MarkdownSummary' 
 
-    - name: Publish coverage summary
-      uses: marocchino/sticky-pull-request-comment@v2
-      with:
-        path: coveragereport/Summary.md
-
     - name: Create CheckRun for code Coverage
       uses: LouisBrunner/checks-action@v1.2.0
       with:
