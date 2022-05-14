@@ -72,4 +72,5 @@ jobs:
         output_text_description_file: code-coverage-results.md
 
     - name: Adding markdown
+      if: always()
       run: echo 'cat code-coverage-results.md' >> $GITHUB_STEP_SUMMARY        
