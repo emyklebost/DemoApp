@@ -48,18 +48,24 @@ jobs:
     - name: Copy Coverage To Predictable Location
       run: cp coverage/**/coverage.cobertura.xml coverage.xml
 
-    - name: ReportGenerator
-      uses: danielpalme/ReportGenerator-GitHub-Action@4.8.12
+    - name: Code Coverage Summary Report
+      uses: irongut/CodeCoverageSummary@v1.2.0
       with:
-        reports: 'coverage.xml'
-        targetdir: 'coveragereport'
-        reporttypes: 'HtmlInline;Cobertura;MarkdownSummary' 
+        filename: coverage.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'
 
-    - name: Create CheckRun for code Coverage
+    - name: Create Coverage Report Check
       uses: LouisBrunner/checks-action@v1.2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        name: Code Coverage
+        name: Coverage Report
         conclusion: ${{ job.status }}
-        output: "{\"summary\":\"Code Coverage\"}"
-        output_text_description_file: coveragereport/Summary.md            
+        output: "{\"summary\":\"Code Coverage Report\"}"
+        output_text_description_file: code-coverage-results.md
