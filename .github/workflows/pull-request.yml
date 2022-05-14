@@ -68,6 +68,7 @@ jobs:
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.2.0
       continue-on-error: true
+      id: coverage-check
       with:
         filename: coverage.xml
         badge: true
@@ -79,7 +80,6 @@ jobs:
         output: both
         thresholds: '60 80'   
     - name: Create Coverage Report Check
-      id: coverage-check
       uses: LouisBrunner/checks-action@v1.2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
