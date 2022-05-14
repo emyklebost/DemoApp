@@ -31,7 +31,7 @@ jobs:
         path: ./test-output
 
   report-test-results:
-    name: 🪲 Generate Test Report
+    name: 🚦 Generate Test Report
     runs-on: ubuntu-latest
     needs: build-and-test
     steps:
@@ -45,12 +45,12 @@ jobs:
       uses: dorny/test-reporter@v1
       with:
         name: Test Report
-        path: "**/test-results.trx"                            
+        path: "./test-output/**/test-results.trx"                            
         reporter: dotnet-trx
         fail-on-error: false
 
   report-test-coverage:
-    name: 📊 Generate Code Coverage Report
+    name: 📈 Generate Code Coverage Report
     runs-on: ubuntu-latest
     needs: build-and-test
     steps:
