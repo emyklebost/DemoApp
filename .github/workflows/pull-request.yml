@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -51,7 +51,7 @@ jobs:
         fail-on-error: true
 
     - name: Code Coverage Summary Report
-      uses: irongut/CodeCoverageSummary@v1
+      uses: irongut/CodeCoverageSummary@v1.2.0
       with:
         filename: coverage.cobertura.xml
         badge: true
@@ -61,4 +61,4 @@ jobs:
         hide_complexity: true
         indicators: true
         output: both
-        thresholds: '60 80'    
+        thresholds: '60 80'   
