@@ -23,10 +23,8 @@ jobs:
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget-
-    - name: Build
-      run: dotnet build --configuration Release
-    - name: Test
-      run: dotnet test --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" --results-directory ./test-output || true
+    - name: Run tests
+      run: dotnet test -warn 0 --configuration Release --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" --results-directory ./test-output || true
     - uses: actions/upload-artifact@v3
       with:
         name: test-output
@@ -41,9 +39,10 @@ jobs:
       with:
         name: test-output
         path: ./test-output
+    - name: Checkout  
+      uses: actions/checkout@v2        
     - name: Test Report
       uses: dorny/test-reporter@v1
-      if: always()
       with:
         name: Test Report
         path: "**/test-results.trx"                            
@@ -61,6 +60,11 @@ jobs:
         path: ./test-output
     - name: Copy Coverage To Predictable Location
       run: cp test-output/**/coverage.cobertura.xml coverage.xml
+    - name: Get source branch name
+      uses: mdecoleman/pr-branch-name@1.2.0
+      id: vars
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}           
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.2.0
       with:
@@ -72,12 +76,7 @@ jobs:
         hide_complexity: true
         indicators: true
         output: both
-        thresholds: '60 80'
-    - name: Get source branch name
-      uses: mdecoleman/pr-branch-name@1.2.0
-      id: vars
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}        
+        thresholds: '60 80'   
     - name: Create Coverage Report Check
       if: always()
       uses: LouisBrunner/checks-action@v1.2.0
