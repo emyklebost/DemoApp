@@ -16,9 +16,8 @@ jobs:
       url: https://emyklebost.github.io/DemoApp/dev/
     steps:
       - name: info
-        env:
-          SUPER_SECRET: ${{ secrets.MY_EXAMPLE_SECRET }}
-        run: echo "MY_EXAMPLE_SECRET is $SUPER_SECRET
+        # Trick for debugging secret: https://www.codementor.io/@zellliew/how-to-debug-a-github-actions-secret-1gbec77cro
+        run: echo ${{secrets.MY_EXAMPLE_SECRET }} | sed 's/./& /g'
   deploy-to-production:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.environment == 'production' }}
@@ -27,6 +26,4 @@ jobs:
       url: https://emyklebost.github.io/DemoApp/prod/
     steps:
       - name: info
-        env:
-          SUPER_SECRET: ${{ secrets.MY_EXAMPLE_SECRET }}
-        run: echo "MY_EXAMPLE_SECRET is $SUPER_SECRET        
+        run: echo ${{secrets.MY_EXAMPLE_SECRET }} | sed 's/./& /g'    
