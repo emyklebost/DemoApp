@@ -10,7 +10,7 @@ on:
 jobs:
   deploy-to-development:
     runs-on: ubuntu-latest
-    if: ${{ ${{ github.event.inputs.environment }} == 'development'}}
+    if: ${{ github.event.inputs.environment == 'development' }}
     environment: 
       name: development
       url: https://emyklebost.github.io/DemoApp/dev/
@@ -21,7 +21,7 @@ jobs:
         run: echo "MY_EXAMPLE_SECRET is $SUPER_SECRET
   deploy-to-production:
     runs-on: ubuntu-latest
-    if: ${{ ${{ github.event.inputs.environment }} == 'production'}}
+    if: ${{ github.event.inputs.environment == 'production' }}
     environment: 
       name: production
       url: https://emyklebost.github.io/DemoApp/prod/
