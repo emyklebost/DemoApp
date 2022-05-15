@@ -1,0 +1,22 @@
+name: Package Docker image
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ghcr.io/emyklebost/DemoApp:${{ github.sha }}
+          #,ghcr.io/emyklebost/DemoApp:${{ github.event.release.tag_name }}
