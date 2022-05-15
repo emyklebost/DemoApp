@@ -8,10 +8,25 @@ on:
         description: Select the environment
         required: true
 jobs:
-  deploy:
+  deploy-to-development:
     runs-on: ubuntu-latest
+    if: ${{ ${{ github.event.inputs.environment }} == 'development'}}
+    environment: 
+      name: development
+      url: https://emyklebost.github.io/DemoApp/dev/
     steps:
-      - name: greet
-        run: | 
-          echo "environment is ${{ github.event.inputs.environment }}"
-          echo "MY_EXAMPLE_SECRET is ${{ secrets.MY_EXAMPLE_SECRET }}
+      - name: info
+        env:
+          SUPER_SECRET: ${{ secrets.MY_EXAMPLE_SECRET }}
+        run: echo "MY_EXAMPLE_SECRET is $SUPER_SECRET
+  deploy-to-production:
+    runs-on: ubuntu-latest
+    if: ${{ ${{ github.event.inputs.environment }} == 'production'}}
+    environment: 
+      name: production
+      url: https://emyklebost.github.io/DemoApp/prod/
+    steps:
+      - name: info
+        env:
+          SUPER_SECRET: ${{ secrets.MY_EXAMPLE_SECRET }}
+        run: echo "MY_EXAMPLE_SECRET is $SUPER_SECRET        
