@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage line-rate="0.01060070671378092" branch-rate="0.3333333333333333" lines-covered="3" lines-valid="283" branches-covered="2" branches-valid="6" complexity="39" version="0" timestamp="1652682382">
+  <sources>
+    <source>/home/runner/work/DemoApp/DemoApp/</source>
+  </sources>
+  <packages>
+    <package name="DemoApp.Api" line-rate="0" branch-rate="1" complexity="4">
+      <classes>
+        <class name="DemoApp.Api.Controllers.ProductController" filename="/home/runner/work/DemoApp/DemoApp/Api/Controllers/ProductController.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="GetAllAsync" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Api.LoggingMiddleware" filename="/home/runner/work/DemoApp/DemoApp/Api/LoggingMiddleware.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="InvokeAsync" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+      </classes>
+    </package>
+    <package name="DemoApp.Domain" line-rate="0.23076923076923078" branch-rate="0.5" complexity="9">
+      <classes>
+        <class name="DemoApp.Domain.Products.Product" filename="/home/runner/work/DemoApp/DemoApp/Domain/Products/Product.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="get_Name" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="get_Price" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Domain.Products.ProductComparer" filename="/home/runner/work/DemoApp/DemoApp/Domain/Products/ProductComparer.cs" line-rate="1" branch-rate="1" complexity="4">
+          <methods>
+            <method name="Compare" signature="(...)" line-rate="1" branch-rate="1" complexity="4">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Domain.Products.ProductService" filename="/home/runner/work/DemoApp/DemoApp/Domain/Products/ProductService.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="&lt;GetAllAsync" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="GetAllAsync" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+      </classes>
+    </package>
+    <package name="DemoApp.Host" line-rate="0" branch-rate="0" complexity="2">
+      <classes>
+        <class name="Program" filename="/home/runner/work/DemoApp/DemoApp/Host/Program.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="&lt;Main&gt;$" signature="(...)" line-rate="1" branch-rate="1" complexity="2">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+      </classes>
+    </package>
+    <package name="DemoApp.Infrastructure" line-rate="0" branch-rate="1" complexity="24">
+      <classes>
+        <class name="DemoApp.Infrastructure.DemoContext" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/DemoContext.cs" line-rate="1" branch-rate="1" complexity="4">
+          <methods>
+            <method name="get_Products" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="OnConfiguring" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="OnModelCreating" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.Migrations.DemoContextModelSnapshot" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/Migrations/DemoContextModelSnapshot.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="BuildModel" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.Migrations.InitialMigration" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/Migrations/20220508160943_InitialMigration.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="Up" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="Down" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.Migrations.InitialMigration" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/Migrations/20220508160943_InitialMigration.Designer.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="BuildTargetModel" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.Migrations.SeedData" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/Migrations/20220509205329_SeedData.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="Up" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="Down" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.Migrations.SeedData" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/Migrations/20220509205329_SeedData.Designer.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="BuildTargetModel" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.Products.ProductEntity" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/Products/ProductEntity.cs" line-rate="1" branch-rate="1" complexity="3">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="get_Name" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="get_Price" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.Products.ProductRepositoryImpl" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/Products/ProductRepositoryImpl.cs" line-rate="1" branch-rate="1" complexity="2">
+          <methods>
+            <method name="GetAllAsync" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.ServiceCollectionExtensions" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/ServiceCollectionExtensions.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="AddInfrastructure" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+        <class name="DemoApp.Infrastructure.Translations.TranslatorHttpImpl" filename="/home/runner/work/DemoApp/DemoApp/Infrastructure/Translations/TranslatorHttpImpl.cs" line-rate="1" branch-rate="1" complexity="7">
+          <methods>
+            <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="get_Contents" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="get_SourceLanguageCode" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="get_TargetLanguageCode" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="get_FeedbackTranslateTextResponse" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="get_TranslatedText" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+            <method name="TranslateAsync" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines />
+            </method>
+          </methods>
+          <lines />
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>
