@@ -1,8 +1,8 @@
 ﻿# Summary
 |||
 |:---|:---|
-| Generated on: | 05/19/2022 - 05:35:09 |
-| Coverage date: | 05/19/2022 - 05:34:25 |
+| Generated on: | 05/20/2022 - 07:51:46 |
+| Coverage date: | 05/20/2022 - 07:51:12 |
 | Parser: | Cobertura |
 | Assemblies: | 4 |
 | Classes: | 14 |
@@ -18,7 +18,7 @@
 | Covered methods: | 3 |
 | Total methods: | 35 |
 | Method coverage: | 8.5% (3 of 35) |
-| Tag: | 55_2349923514 |
+| Tag: | 59_2356906617 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
