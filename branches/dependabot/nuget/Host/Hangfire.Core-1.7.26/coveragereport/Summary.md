@@ -1,7 +1,7 @@
 ﻿# Summary
 |||
 |:---|:---|
-| Generated on: | 05/15/2022 - 12:38:07 |
+| Generated on: | 05/20/2022 - 07:51:40 |
 | Parser: | CoberturaParser |
 | Assemblies: | 4 |
 | Classes: | 14 |
@@ -14,7 +14,7 @@
 | Covered branches: | 2 |
 | Total branches: | 6 |
 | Branch coverage: | 33.3% (2 of 6) |
-| Tag: | 49_2327239578 |
+| Tag: | 58_2356906199 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|
