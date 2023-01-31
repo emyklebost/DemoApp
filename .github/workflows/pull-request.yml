@@ -80,7 +80,7 @@ jobs:
         output: both
         thresholds: '60 80'   
     - name: Create Coverage Report Check
-      uses: LouisBrunner/checks-action@v1.2.0
+      uses: LouisBrunner/checks-action@v1.6.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: Coverage Report
